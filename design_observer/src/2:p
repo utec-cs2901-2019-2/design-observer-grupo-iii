@@ -7,12 +7,12 @@ public class SensorList {
 
   private List<Observer> sensors = new ArrayList<>();
 
-  public void start() {
+  public SensorList() {
+    int r = (int) ((Math.random() * ((50 - 1) + 1)) + 1);
     while (true) {
-      int r = (int) ((Math.random() * ((50 - 1) + 1)) + 1);
       setTemperature(r);
       try {
-        Thread.sleep(3 * 1000);
+        Thread.sleep(10);
       } catch (Exception e) {
         Thread.currentThread().interrupt();
       }
@@ -27,7 +27,7 @@ public class SensorList {
     sensors.remove(observer);
   }
 
-  private void setTemperature(int temp) {
+  public void setTemperature(int temp) {
     temperature = temp;
     for (Observer observer : this.sensors) {
       observer.update(temperature);
